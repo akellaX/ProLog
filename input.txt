@@ -1,0 +1,5 @@
+P('x')
+P('y')
+?P('x')
+?P('a')
+exists(x, y : P(x, y)) -> Q(x,y)
