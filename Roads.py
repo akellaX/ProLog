@@ -1,29 +1,29 @@
 import numpy as np;
 class Roads :
-    dict = {}
+    mapa = {}
     def __init__(self):
-        print("created")
+        self.mapa = dict()
 
     def add_road (self, key, value) :
-        if not (key in self.dict) :
-                self.dict[key] = {value}
+        if not (key in self.mapa) :
+                self.mapa[key] = {value}
         else :
-                self.dict[key].add(value)
+                self.mapa[key].add(value)
 
     def add_node (self, key) :
-        if not(key in self.dict) :
-            self.dict[key] = set()
+        if not(key in self.mapa) :
+            self.mapa[key] = set()
 
     def showRoads (self) :
-        print(self.dict)
+        print(self.mapa)
 
 
     def removeNode (self, town) :
-        self.dict.pop(town)
+        self.mapa.pop(town)
         self.path.pop(town)
-        for key in self.dict :
+        for key in self.mapa :
             try :
-                self.dict[key].remove(town)
+                self.mapa[key].remove(town)
             except :
                 pass
 
@@ -35,7 +35,7 @@ class Roads :
             node = queue.pop(0)
             if node not in visited:
                 visited.append(node)
-                neighbours = self.dict[node]
+                neighbours = self.mapa[node]
 
                 for n in neighbours:
                     queue.append(n)
@@ -43,6 +43,9 @@ class Roads :
 
     def isConnected(self, city1, city2):
         return city2 in self.BFS(city1)
+
+    def isKey(self, key):
+        return key in self.mapa
 
 
 # game = Roads();
@@ -84,4 +87,4 @@ class Roads :
 # roads.add_road("Tula","Moscow")
 # roads.add_road("Yaroslavl","Pereslavl")
 # print(roads.isConnected("Kazan","Tula"))
-# print(roads.BFS("Tula"))
+# roads.showRoads()
