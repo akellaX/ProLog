@@ -47,7 +47,39 @@ class Roads :
     def isKey(self, key):
         return key in self.mapa
 
+    def getXY(self):
+        ans = []
+        x=[]
+        y=[]
+        for key in self.mapa:
+            if(len(self.mapa[key]) == 1):
+                for j in self.mapa[key]:
+                    if (j != key):
+                        x.append(key)
+            else:
+                x.append(key)
+            for i in self.mapa[key]:
+                if(key != i):
+                    y.append(i)
+        ans.append(x)
+        ans.append(y)
+        return ans
 
+    def getPairList(self, reversed):
+        ans = []
+        if (not reversed):
+            for key, val in self.mapa.items():
+                for i in val:
+                    if(key != i):
+                        temp = key + ',' + i
+                        ans.append(temp)
+        else:
+            for key, val in self.mapa.items():
+                for i in val:
+                    if (key != i):
+                        temp = i + ',' + key
+                        ans.append(temp)
+        return ans
 # game = Roads();
 # game.add_node("R");
 # game.add_node("S");
